@@ -7,9 +7,15 @@ from datetime import date
 
 CONFIG = [
     {
-       "source_dir": r"C:\путь\к\папке\источник",
-       "target_file": r"C:\путь\к\папке\назначение\target.txt"
-    }
+        "source_dir": r"C:\путь\к\папке\источник",  #  папка
+        "target_file": r"C:\путь\к\папке\назначение\target.txt",  # файл
+        "every_day_choice": True  # False
+    },
+    # {
+    #     "source_dir": r"C:\путь\к\папке\источник",  #  папка
+    #     "target_file": r"C:\путь\к\папке\назначение\target.txt",  # файл
+    #     "every_day_choice": True  # False
+    # }
 ]
 
 
@@ -37,7 +43,11 @@ def main():
         if not files:
             raise FileNotFoundError("В папке-источнике нет файлов!")
 
-        random_file = daily_choice(files)
+        if conf["every_day_choice"]:
+            random_file = daily_choice(files)
+        else:
+            random_file = random.choice(files)
+
         source_file = os.path.join(conf["target_file"], random_file)
 
         shutil.copy2(source_file, conf["target_file"])
