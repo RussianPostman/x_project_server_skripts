@@ -48,13 +48,12 @@ def main():
         else:
             random_file = random.choice(files)
 
-        source_file = os.path.join(conf["target_file"], random_file)
-
+        source_file = os.path.join(conf["source_dir"], random_file)
         shutil.copy2(source_file, conf["target_file"])
 
         print(
-            f"✅ Файл '{conf["target_file"]}'"
-            " заменён содержимым из '{random_file}'"
+            f"✅ Файл '{conf['target_file']}' "
+            f"заменён содержимым из '{random_file}'"
         )
 
 
